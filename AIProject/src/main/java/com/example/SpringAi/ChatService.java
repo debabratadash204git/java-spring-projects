@@ -15,8 +15,8 @@ public class ChatService {
 	@Autowired
 	private ChatModel chatmodel;
 	
-	@Autowired
-	private ChatOptions chatOptions;
+//	@Autowired
+//	private ChatOptions chatOptions;
 	
 	
 	public String getresponse(String promptText) {
