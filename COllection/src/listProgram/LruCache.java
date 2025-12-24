@@ -6,28 +6,29 @@ import java.util.List;
 import java.util.Map;
 
 public class LruCache {
-	
+
 	int capacity;
 	Map<Integer,Integer> map;
 	List<Integer> list;
-	
+
 	LruCache(int capacity){
 		this.capacity = capacity;
-		this.map = new HashMap<Integer,Integer>();
+		this.map = new HashMap<>();
 		this.list = new LinkedList();
 	}
-	
+
 	public int get(int key)
 	{
-		if(!map.containsKey(key))
+		if(!map.containsKey(key)) {
 			return -1;
+		}
 		list.remove(Integer.valueOf(key));
 		list.addFirst(key);
 		return map.get(key);
 	}
-	
+
 	public void put(int key, int value) {
-		
+
 		if(map.containsKey(key)) {
 			list.remove(Integer.valueOf(key));
 			map.put(key, value);
@@ -41,12 +42,12 @@ public class LruCache {
 		}
 		list.addFirst(key);
 	}
-	
-	
+
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		LruCache cache = new LruCache(3);
 		cache.put(2, 3);
 		cache.put(4, 5);

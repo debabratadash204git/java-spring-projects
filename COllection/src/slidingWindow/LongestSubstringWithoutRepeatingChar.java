@@ -1,42 +1,41 @@
 package slidingWindow;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LongestSubstringWithoutRepeatingChar {
-	
-	public int findLongestSubstringWithoutRepeatingChar(String str) {
+
+	private static  int findLongestSubstringWithoutRepeatingChar(String str) {
 		
-		int maxLength=0;
-		int start = 0;
-		int end =0;
-		Map<Character,Integer> map = new HashMap<>();
+		int i = 0;
+		int j = 0;
+		int max = 0;
+		HashMap<Character, Integer> map = new HashMap<>();
 		
-		for(end = 0; end < str.length(); end++ ) {
-			
-			char ch = str.charAt(end);
+		for(j=0; j< str.length();j++) {
+			char ch = str.charAt(j);
 			map.put(ch, map.getOrDefault(ch, 0) +1);
-			
-			while(map.get(ch) > 1)
-			{
-				char startChar = str.charAt(start);
-				map.put(startChar, map.get(startChar) -1);
-				start++;
+			while(map.get(ch) > 1) {
+				char first = str.charAt(i);
+				map.put(first, map.get(first) -1);
+				i++;
 			}
-			
-			maxLength = Math.max(maxLength, end - start +1);		
+			max = Math.max(max, j-i+1);
 		}
 		
-		return maxLength;
+
+		return max;
 	}
 
 	public static void main(String[] args) {
-		
+
 		String str = "eghghhgg";
-		
-		LongestSubstringWithoutRepeatingChar lswr = new LongestSubstringWithoutRepeatingChar();
-		int length = lswr.findLongestSubstringWithoutRepeatingChar(str);
-		System.out.println("Length of the LongestSubstringWithoutRepeatingChar->  " + length);
-		
+		System.out.println("Length of the LongestSubstringWithoutRepeatingChar->  " 
+							+ findLongestSubstringWithoutRepeatingChar(str));
+
 	}
 
 }
+
+
+

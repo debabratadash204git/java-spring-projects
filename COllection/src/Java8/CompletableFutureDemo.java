@@ -1,8 +1,6 @@
 package Java8;
 
-import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureDemo {
 
@@ -14,17 +12,17 @@ public class CompletableFutureDemo {
 			catch(Exception e) {}
 			return "DB call invoked";
 		});
-		
+
 		CompletableFuture<String> serviceCall = CompletableFuture.supplyAsync(() -> {
 			try {Thread.sleep(800);}
 			catch(Exception e) {}
 			return "Service call invoked";
 		});
-		
+
 		CompletableFuture combine = dbcall.thenCombine(serviceCall, (db, service) -> db + " + " + service);
-		
+
 		System.out.println(combine.get());
-		
+
 	}
 
 }
