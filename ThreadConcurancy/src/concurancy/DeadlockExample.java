@@ -7,8 +7,7 @@ public class DeadlockExample {
 		String obj1 = "ABC";
 		String obj2 = "XYZ";
 		
-		Thread t1 = new Thread("Thread1") {
-			public void run() {
+		new Thread(()-> {
 				synchronized(obj1){
 					System.out.println("Current Thread acquired the lock on object1---" + Thread.currentThread().getName());
 					
@@ -26,10 +25,9 @@ public class DeadlockExample {
 						
 					}
 				}
-			};
+			).start();;
 			
-			Thread t2 = new Thread("Thread2") {
-				public void run() {
+			new Thread(()-> {
 					synchronized (obj1){
 						System.out.println("Current Thread acquired the lock on object1---" + Thread.currentThread().getName());
 						
@@ -47,9 +45,8 @@ public class DeadlockExample {
 							
 						}
 					}
-				};
-				t1.start();
-				t2.start();
+				).start();
+				
 		}
 
 	}
